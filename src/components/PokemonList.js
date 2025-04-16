@@ -3,7 +3,7 @@ import { Menu, Button, Input, Spin } from 'antd';
 import useCapitalize from "../hooks/useCapitalize";
 const { Search } = Input;
 
-export default function PokemonList ({pokedex, page, nextPage, previousPage, setPokemonURL, reset, isErrorPokedex, isLoadingPokedex}) {
+export default function PokemonList ({pokedex, page, nextPage, previousPage, setPokemonURL, isErrorPokedex, isLoadingPokedex}) {
 
     const items = pokedex?.results?.map((i, idx) => (
         {key: idx + 1, label: useCapitalize(i.name), url: i.url}
@@ -11,12 +11,10 @@ export default function PokemonList ({pokedex, page, nextPage, previousPage, set
 
     const selectPokemon = (key) => {
         setPokemonURL(items[key - 1]?.url);
-        reset();
     }
 
     const searchPokemon = (e) => {
         setPokemonURL(`https://pokeapi.co/api/v2/pokemon/${e}`);
-        reset();
     }
     
     return (
@@ -38,6 +36,5 @@ export default function PokemonList ({pokedex, page, nextPage, previousPage, set
                 </div>
                 <Search style={{marginTop: 30}} placeholder="Buscar pokémon..." onSearch={searchPokemon} />
             </div>
-         
     );
 };

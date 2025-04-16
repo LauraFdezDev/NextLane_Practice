@@ -15,7 +15,7 @@ export default function Home() {
   const [pokemonURL, setPokemonURL] = useState(null);
   const { pokemon, isErrorPokemon, isLoadingPokemon } = useSearchPokemon(pokemonURL);
 
-  const { clicks, click, reset } = useClickCounters();
+  const { clicks, click } = useClickCounters(pokemon);
 
   const nextPage = () => {
     setPage(page + 1)
@@ -37,8 +37,7 @@ export default function Home() {
             page={page} 
             nextPage={nextPage} 
             previousPage={previousPage} 
-            setPokemonURL={setPokemonURL} 
-            reset={reset} />
+            setPokemonURL={setPokemonURL} />
         </div>
         <div className="row content">
           <PokemonDetails 

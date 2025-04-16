@@ -16,7 +16,7 @@ export default function useSearchPokemon(pokemonURL) {
             const json = await response.json();
             await setItem(json);
             return json;
-          } else return JSON.parse(getItem());
+          } else return JSON.parse(getItem() || "{}");
         } 
       })
 
